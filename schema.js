@@ -4,9 +4,10 @@ export const schema  = `#graphql
     username:String!
     email:String!
     role:String!
+    todos:[Todo]
  }
 
- enum role {
+enum role {
     user
     admin
  }
@@ -26,16 +27,22 @@ type Query{
     getUser(id:ID!):user
     getAllUsers:[user]
     todo(id:ID):Todo
+    userTodos:[Todo]
+    use:user
 }
 
 type Mutation{
-deleteUser(id:ID):String
+deletetodo(id:ID):String
 addUser(user:NewUserInput):user
-login(user:loginInput):response
 addTodo(todo:todoInput):Todo
-deleteTodo(id:ID):String
+register(usrer:userInput):String
+login(user:loginInput):response
 }
 
+input userInput{
+   username:String!
+   password:String!
+}
 input NewUserInput {
   username: String!
   password: String!
